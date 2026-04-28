@@ -14,13 +14,14 @@ jobs:
     container:
       image: ubuntu:noble
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: jazzy
+      - name: Repo checkout
+        uses: actions/checkout@v4
       - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@0.7.15
+        uses: ros-tooling/setup-ros@0.7.13
+        with:
+          required-ros-distributions: jazzy
       - name: build and test
-        uses: ros-tooling/action-ros-ci@0.4.5
+        uses: ros-tooling/action-ros-ci@0.4.3
         with:
           package-name: robot_msr
           target-ros2-distro: jazzy
