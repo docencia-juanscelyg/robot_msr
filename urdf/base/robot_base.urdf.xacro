@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:macro name="robot_base" params="prefix">
+
+        <!-- BASE FOOTPRINT -->
+		<link name="${prefix}base_footprint" />
+
+ 		<joint name="${prefix}base_footprint_joint" type="fixed">
+            <origin xyz="0 0 0.8" rpy="0 0 0" />
+            <parent link="${prefix}base_footprint"/>
+            <child link="${prefix}base_link" />
+		</joint>       
+
+        <!-- BASE LINK -->
+        <link name="${prefix}base_link">
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="200.0"/>
+                <inertia  ixx="1.391" ixy="0.004"  ixz="0.0"  iyy="6.853"  iyz="0.0"  izz="6.125" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="4 2 0.5"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="4 2 0.5"/>
+                </geometry>
+            </collision>
+        </link>
+
+
+
+    </xacro:macro>
+</robot>
