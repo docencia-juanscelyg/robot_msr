@@ -1,0 +1,33 @@
+name: jazzy
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    container:
+      image: ubuntu:noble
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: jazzy
+      - name: Setup ROS 2
+        uses: ros-tooling/setup-ros@0.7.15
+      - name: build and test
+        uses: ros-tooling/action-ros-ci@0.4.5
+        with:
+          package-name: robot_msr
+          target-ros2-distro: jazzy
+          skip-test: true
+          colcon-defaults: |
+            {
+              "build": {
+                "packages-up-to": true
+              }
+            }
